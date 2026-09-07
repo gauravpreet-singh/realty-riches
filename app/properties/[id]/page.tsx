@@ -7,6 +7,7 @@ import { properties } from "@/data/properties";
 import PropertyGallery from "@/components/PropertyGallery";
 import EmiCalculator from "@/components/EmiCalculator";
 import LocationSection from "@/components/LocationSection";
+import NearbyPlaces from "@/components/NearbyPlaces";
 
 type PropertyPageProps = {
   params: Promise<{
@@ -235,15 +236,15 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${message}`;
                 </div>
 
               </div>
-
+<NearbyPlaces places={property.nearby} />
             </div>
+           {/* Nearby Places */}
+
+
             {/* ================================================= */}
 {/* EMI CALCULATOR */}
 {/* ================================================= */}
 
-<div className="w-full max-w-6xl">
-  <EmiCalculator propertyPrice={property.price} />
-</div>
 
             {/* ================================================= */}
             {/* RIGHT ACTION PANEL */}
@@ -311,7 +312,10 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${message}`;
               </div>
 
             </div>
-
+ {/* EMI - FULL WIDTH */}
+    <div className="mt-16 w-full">
+      <EmiCalculator propertyPrice={property.price} />
+    </div>
           </div>
 
         </div>

@@ -1,3 +1,9 @@
+export type NearbyPlace = {
+  category: string;
+  name: string;
+  distance: string;
+};
+
 export type Property = {
   id: string;
   title: string;
@@ -15,6 +21,7 @@ export type Property = {
   amenities: string[];
   possession?: string;
   description: string;
+  nearby?: NearbyPlace[];
 };
 
 export const properties: Property[] = [
@@ -68,7 +75,40 @@ export const properties: Property[] = [
 
   description:
     "A spacious premium 3 BHK apartment located in Sector 125, Mohali, offering modern interiors, excellent connectivity and a secure gated community.",
-},
+
+      nearby: [
+    {
+      category: "Education",
+      name: "Schools & Colleges",
+      distance: "1.5–5 km",
+    },
+    {
+      category: "Healthcare",
+      name: "Hospitals & Clinics",
+      distance: "2–5 km",
+    },
+    {
+      category: "Shopping",
+      name: "Shopping & Retail",
+      distance: "2–6 km",
+    },
+    {
+      category: "Airport",
+      name: "Chandigarh International Airport",
+      distance: "15–25 km",
+    },
+    {
+      category: "Connectivity",
+      name: "Chandigarh",
+      distance: "8–12 km",
+    },
+    {
+      category: "Highway",
+      name: "Major Road Connectivity",
+      distance: "2–5 km",
+    },
+  ],
+  },
 
   {
     id: "kharar-luxury-villa",
