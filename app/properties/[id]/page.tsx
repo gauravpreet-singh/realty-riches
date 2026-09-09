@@ -8,6 +8,9 @@ import PropertyGallery from "@/components/PropertyGallery";
 import EmiCalculator from "@/components/EmiCalculator";
 import LocationSection from "@/components/LocationSection";
 import NearbyPlaces from "@/components/NearbyPlaces";
+import BuyerEnquiry from "@/components/BuyerEnquiry";
+import SavePropertyButton from "@/components/SavedProperties";
+import ComparePropertyButton from "@/components/CompareProperties";
 
 type PropertyPageProps = {
   params: Promise<{
@@ -80,7 +83,14 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${message}`;
               <span className="text-sm text-zinc-400">
                 {property.propertyType}
               </span>
-
+<SavePropertyButton
+  propertyId={property.id}
+  className="inline-flex items-center rounded-full border border-white/10 px-5 py-2.5 text-sm text-zinc-300 transition hover:border-[#d4af37] hover:text-[#d4af37]"
+/>
+ <ComparePropertyButton
+    propertyId={property.id}
+    className="inline-flex items-center rounded-full border border-white/10 px-5 py-2.5 text-sm text-zinc-300 transition hover:border-[#d4af37] hover:text-[#d4af37]"
+  />
               {property.possession && (
                 <>
                   <span className="h-5 w-px bg-white/20" />
@@ -321,6 +331,18 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${message}`;
         </div>
 
       </section>
+{/* BUYER ENQUIRY */}
+
+<section className="section-padding">
+  <div className="container-custom">
+    <BuyerEnquiry
+      propertyId={property.id}
+      propertyTitle={property.title}
+      propertyLocation={property.location}
+      propertyPrice={property.price}
+    />
+  </div>
+</section>
 
       {/* ===================================================== */}
       {/* LOCATION */}

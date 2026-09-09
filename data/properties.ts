@@ -8,6 +8,7 @@ export type Property = {
   id: string;
   title: string;
   location: string;
+  locationSlug: string;
   city: string;
   price: number;
   area: number;
@@ -17,6 +18,13 @@ export type Property = {
   image: string;
   images?: string[];
   video?: string;
+  rera?: {
+    registered: boolean;
+    registrationNumber: string;
+    verified: boolean;
+    verifiedOn: string;
+    source: string;
+  };
   features: string[];
   amenities: string[];
   possession?: string;
@@ -26,94 +34,97 @@ export type Property = {
 
 export const properties: Property[] = [
   {
-  id: "sector-125-3bhk",
+    id: "sector-125-3bhk",
 
-  title: "Premium 3 BHK Apartment",
+    title: "Premium 3 BHK Apartment",
 
-  location: "Sector 125, Mohali",
+    location: "Sector 125, Mohali",
 
-  city: "Mohali",
+    locationSlug: "mohali",
 
-  price: 9500000,
+    city: "Mohali",
 
-  area: 1525,
+    price: 9500000,
 
-  bedrooms: 3,
+    area: 1525,
 
-  bathrooms: 3,
+    bedrooms: 3,
 
-  propertyType: "Apartment",
+    bathrooms: 3,
 
-  image:
-    "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1600&q=85",
+    propertyType: "Apartment",
 
-  images: [
-    "https://images.unsplash.com/photo-1600607688969-a5bfcd646154?auto=format&fit=crop&w=1600&q=85",
+    image:
+      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1600&q=85",
 
-    "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1600&q=85",
+    images: [
+      "https://images.unsplash.com/photo-1600607688969-a5bfcd646154?auto=format&fit=crop&w=1600&q=85",
 
-    "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=1600&q=85",
-  ],
+      "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1600&q=85",
 
-  video: "/videos/property-1.mp4",
+      "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=1600&q=85",
+    ],
 
-  features: [
-    "Gated Society",
-    "24h Power Backup",
-    "Dedicated Parking",
-  ],
+    video: "/videos/property-1.mp4",
 
-  amenities: [
-    "Club House",
-    "Gym",
-    "Swimming Pool",
-    "Security",
-    "Children's Play Area",
-  ],
+    features: [
+      "Gated Society",
+      "24h Power Backup",
+      "Dedicated Parking",
+    ],
 
-  possession: "May 2027",
+    amenities: [
+      "Club House",
+      "Gym",
+      "Swimming Pool",
+      "Security",
+      "Children's Play Area",
+    ],
 
-  description:
-    "A spacious premium 3 BHK apartment located in Sector 125, Mohali, offering modern interiors, excellent connectivity and a secure gated community.",
+    possession: "May 2027",
 
-      nearby: [
-    {
-      category: "Education",
-      name: "Schools & Colleges",
-      distance: "1.5–5 km",
-    },
-    {
-      category: "Healthcare",
-      name: "Hospitals & Clinics",
-      distance: "2–5 km",
-    },
-    {
-      category: "Shopping",
-      name: "Shopping & Retail",
-      distance: "2–6 km",
-    },
-    {
-      category: "Airport",
-      name: "Chandigarh International Airport",
-      distance: "15–25 km",
-    },
-    {
-      category: "Connectivity",
-      name: "Chandigarh",
-      distance: "8–12 km",
-    },
-    {
-      category: "Highway",
-      name: "Major Road Connectivity",
-      distance: "2–5 km",
-    },
-  ],
+    description:
+      "A spacious premium 3 BHK apartment located in Sector 125, Mohali, offering modern interiors, excellent connectivity and a secure gated community.",
+
+    nearby: [
+      {
+        category: "Education",
+        name: "Schools & Colleges",
+        distance: "1.5–5 km",
+      },
+      {
+        category: "Healthcare",
+        name: "Hospitals & Clinics",
+        distance: "2–5 km",
+      },
+      {
+        category: "Shopping",
+        name: "Shopping & Retail",
+        distance: "2–6 km",
+      },
+      {
+        category: "Airport",
+        name: "Chandigarh International Airport",
+        distance: "15–25 km",
+      },
+      {
+        category: "Connectivity",
+        name: "Chandigarh",
+        distance: "8–12 km",
+      },
+      {
+        category: "Highway",
+        name: "Major Road Connectivity",
+        distance: "2–5 km",
+      },
+    ],
   },
 
   {
     id: "kharar-luxury-villa",
     title: "Modern Luxury Villa",
     location: "Kharar, Punjab",
+    locationSlug: "kharar",
     city: "Kharar",
     price: 14500000,
     area: 2450,
@@ -124,6 +135,13 @@ export const properties: Property[] = [
     image:
       "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80",
 
+    rera: {
+      registered: true,
+      registrationNumber: "PBRERA-SAS80-PR0604",
+      verified: true,
+      verifiedOn: "2026-09-09",
+      source: "Punjab RERA",
+    },
     features: [
       "Private Parking",
       "Garden",
@@ -145,6 +163,7 @@ export const properties: Property[] = [
     id: "new-chandigarh-apartment",
     title: "Luxury 3 BHK Residence",
     location: "New Chandigarh",
+    locationSlug: "New Chandigarh",
     city: "New Chandigarh",
     price: 11000000,
     area: 1850,

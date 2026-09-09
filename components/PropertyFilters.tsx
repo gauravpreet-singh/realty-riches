@@ -1,8 +1,13 @@
 "use client";
 
+import { locations } from "@/data/locations";
+
 type PropertyFiltersProps = {
   search: string;
   setSearch: (value: string) => void;
+
+  location: string;
+  setLocation: (value: string) => void;
 
   propertyType: string;
   setPropertyType: (value: string) => void;
@@ -20,17 +25,25 @@ type PropertyFiltersProps = {
 export default function PropertyFilters({
   search,
   setSearch,
+
+  location,
+  setLocation,
+
   propertyType,
   setPropertyType,
+
   maxPrice,
   setMaxPrice,
+
   bedrooms,
   setBedrooms,
+
   sort,
   setSort,
 }: PropertyFiltersProps) {
   const clearFilters = () => {
     setSearch("");
+    setLocation("");
     setPropertyType("");
     setMaxPrice("");
     setBedrooms("");
@@ -39,12 +52,15 @@ export default function PropertyFilters({
 
   return (
     <aside className="sticky top-28 h-fit rounded-2xl border border-white/10 bg-white/[0.03] p-6">
+
+      {/* Header */}
       <div className="mb-6 flex items-center justify-between">
         <h2 className="text-lg font-semibold">
           Filters
         </h2>
 
         <button
+          type="button"
           onClick={clearFilters}
           className="text-xs text-[#d4af37] hover:underline"
         >
@@ -61,9 +77,35 @@ export default function PropertyFilters({
         <input
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          placeholder="Location or property"
+          placeholder="Property name or keyword"
           className="w-full rounded-xl border border-white/10 bg-black px-4 py-3 text-sm outline-none transition focus:border-[#d4af37]"
         />
+      </div>
+
+      {/* Location */}
+      <div className="border-b border-white/10 py-6">
+        <label className="mb-3 block text-sm font-medium">
+          Location
+        </label>
+
+        <select
+          value={location}
+          onChange={(e) => setLocation(e.target.value)}
+          className="w-full rounded-xl border border-white/10 bg-black px-4 py-3 text-sm text-zinc-300 outline-none transition focus:border-[#d4af37]"
+        >
+          <option value="">
+            All Locations
+          </option>
+
+          {locations.map((item) => (
+            <option
+              key={item.slug}
+              value={item.slug}
+            >
+              {item.name}
+            </option>
+          ))}
+        </select>
       </div>
 
       {/* Property Type */}
@@ -106,11 +148,25 @@ export default function PropertyFilters({
           onChange={(e) => setMaxPrice(e.target.value)}
           className="w-full rounded-xl border border-white/10 bg-black px-4 py-3 text-sm outline-none"
         >
-          <option value="">Any Budget</option>
-          <option value="7500000">₹75 Lakh</option>
-          <option value="10000000">₹1 Crore</option>
-          <option value="15000000">₹1.5 Crore</option>
-          <option value="20000000">₹2 Crore</option>
+          <option value="">
+            Any Budget
+          </option>
+
+          <option value="7500000">
+            ₹75 Lakh
+          </option>
+
+          <option value="10000000">
+            ₹1 Crore
+          </option>
+
+          <option value="15000000">
+            ₹1.5 Crore
+          </option>
+
+          <option value="20000000">
+            ₹2 Crore
+          </option>
         </select>
       </div>
 
@@ -124,6 +180,7 @@ export default function PropertyFilters({
           {["2", "3", "4"].map((value) => (
             <button
               key={value}
+              type="button"
               onClick={() =>
                 setBedrooms(
                   bedrooms === value ? "" : value
@@ -168,3 +225,4 @@ export default function PropertyFilters({
     </aside>
   );
 }
+
