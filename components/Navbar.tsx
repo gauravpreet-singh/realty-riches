@@ -19,10 +19,6 @@ const navItems = [
     href: "/market-insights",
   },
   {
-    label: "EMI Calculator",
-    href: "/emi-calculator",
-  },
-  {
     label: "Compare",
     href: "/compare",
   },

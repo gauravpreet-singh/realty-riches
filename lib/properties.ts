@@ -165,7 +165,62 @@ export async function getPublishedProperties(): Promise<BuyerProperty[]> {
         mapProperty(row as PropertyRow)
     );
 }
+export async function getFeaturedProperties(): Promise<BuyerProperty[]> {
+    const supabase = await createClient();
 
+    const { data, error } = await supabase
+        .from("properties")
+        .select(`
+      id,
+      title,
+      slug,
+      property_type,
+      location,
+      location_slug,
+      city,
+      price,
+      area,
+      bedrooms,
+      bathrooms,
+      description,
+      possession,
+      rera_registration_number,
+
+      property_images (
+        id,
+        storage_path,
+        public_url,
+        display_order,
+        is_cover
+      ),
+
+      property_videos (
+        id,
+        storage_path,
+        public_url
+      ),
+
+      property_features (
+        feature
+      ),
+
+      property_amenities (
+        amenity
+      )
+    `)
+        .eq("status", "published")
+        .eq("featured", true)
+        .order("created_at", { ascending: false });
+
+    if (error) {
+        console.error("Failed to load featured properties:", error);
+        throw new Error("Unable to load featured properties.");
+    }
+
+    return (data ?? []).map((row) =>
+        mapProperty(row as PropertyRow)
+    );
+}
 export async function getPublishedPropertyById(
     id: string
 ): Promise<BuyerProperty | null> {
@@ -238,5 +293,6 @@ export async function getPublishedPropertyById(
     }
 
     return mapProperty(data as PropertyRow);
+    
 }
 

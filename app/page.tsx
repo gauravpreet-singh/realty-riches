@@ -6,15 +6,18 @@ import MarketInsights from "@/components/MarketInsights";
 import Testimonials from "@/components/Testimonials";
 import AboutSection from "@/components/AboutSection";
 import Footer from "@/components/Footer";
+import { getFeaturedProperties } from "@/lib/properties";
 
-export default function Home() {
+export default async function Home() {
+  const featuredProperties = await getFeaturedProperties();
+
   return (
     <main className="min-h-screen bg-black text-white">
       <Navbar />
 
       <Hero />
 
-      <FeaturedProperties />
+      <FeaturedProperties properties={featuredProperties} />
 
       <Locations />
 
