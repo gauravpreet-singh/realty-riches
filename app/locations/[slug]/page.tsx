@@ -6,7 +6,7 @@ import Footer from "@/components/Footer";
 import PropertyCard from "@/components/PropertyCard";
 
 import { locations } from "@/data/locations";
-import { properties } from "@/data/properties";
+import { getPublishedProperties } from "@/lib/properties";
 import LocationMarketData from "@/components/LocationMarketData";
 
 type LocationPageProps = {
@@ -34,7 +34,11 @@ export default async function LocationPage({
     notFound();
   }
 
-  const locationProperties = properties.filter( (property) => property.locationSlug === location.slug );
+  const properties = await getPublishedProperties();
+
+  const locationProperties = properties.filter(
+    (property) => property.locationSlug === location.slug
+  );
 
   return (
     <main className="min-h-screen bg-black text-white">

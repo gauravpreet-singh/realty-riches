@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { FormEvent, Suspense, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 
@@ -9,6 +9,28 @@ import Footer from "@/components/Footer";
 import { properties } from "@/data/properties";
 
 export default function ScheduleVisitPage() {
+  return (
+    <Suspense
+      fallback={
+        <main className="min-h-screen bg-black text-white">
+          <Navbar />
+          <section className="pt-36 pb-20">
+            <div className="container-custom max-w-4xl">
+              <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-8 text-center text-zinc-400">
+                Loading visit scheduler...
+              </div>
+            </div>
+          </section>
+          <Footer />
+        </main>
+      }
+    >
+      <ScheduleVisitContent />
+    </Suspense>
+  );
+}
+
+function ScheduleVisitContent() {
   const searchParams = useSearchParams();
 
   const propertyId = searchParams.get("property");
