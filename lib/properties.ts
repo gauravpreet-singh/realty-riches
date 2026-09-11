@@ -2,8 +2,14 @@ import { createClient } from "@/lib/supabase/server";
 
 import type { Property } from "@/data/properties";
 
+export type BuyerAmenity = {
+    name: string;
+    icon: string;
+};
+
 export type BuyerProperty = Property & {
   slug: string;
+  amenityDetails?: BuyerAmenity[];
 };
 
 type PropertyRow = {
@@ -42,6 +48,7 @@ type PropertyRow = {
 
     property_amenities: {
         amenity: string;
+        icon: string | null;
     }[];
 };
 
@@ -93,6 +100,12 @@ function mapProperty(row: PropertyRow): BuyerProperty {
             row.property_amenities?.map(
                 (item) => item.amenity
             ) ?? [],
+
+        amenityDetails:
+            row.property_amenities?.map((item) => ({
+                name: item.amenity,
+                icon: item.icon ?? "sparkles",
+            })) ?? [],
 
         possession: row.possession ?? undefined,
 
@@ -150,7 +163,8 @@ export async function getPublishedProperties(): Promise<BuyerProperty[]> {
       ),
 
       property_amenities (
-        amenity
+        amenity,
+        icon
       )
     `)
         .eq("status", "published")
@@ -165,62 +179,7 @@ export async function getPublishedProperties(): Promise<BuyerProperty[]> {
         mapProperty(row as PropertyRow)
     );
 }
-export async function getFeaturedProperties(): Promise<BuyerProperty[]> {
-    const supabase = await createClient();
 
-    const { data, error } = await supabase
-        .from("properties")
-        .select(`
-      id,
-      title,
-      slug,
-      property_type,
-      location,
-      location_slug,
-      city,
-      price,
-      area,
-      bedrooms,
-      bathrooms,
-      description,
-      possession,
-      rera_registration_number,
-
-      property_images (
-        id,
-        storage_path,
-        public_url,
-        display_order,
-        is_cover
-      ),
-
-      property_videos (
-        id,
-        storage_path,
-        public_url
-      ),
-
-      property_features (
-        feature
-      ),
-
-      property_amenities (
-        amenity
-      )
-    `)
-        .eq("status", "published")
-        .eq("featured", true)
-        .order("created_at", { ascending: false });
-
-    if (error) {
-        console.error("Failed to load featured properties:", error);
-        throw new Error("Unable to load featured properties.");
-    }
-
-    return (data ?? []).map((row) =>
-        mapProperty(row as PropertyRow)
-    );
-}
 export async function getPublishedPropertyById(
     id: string
 ): Promise<BuyerProperty | null> {
@@ -263,7 +222,8 @@ export async function getPublishedPropertyById(
       ),
 
       property_amenities (
-        amenity
+        amenity,
+        icon
       )
     `)
         .eq("status", "published");
@@ -293,6 +253,63 @@ export async function getPublishedPropertyById(
     }
 
     return mapProperty(data as PropertyRow);
-    
 }
 
+
+export async function getFeaturedProperties(): Promise<BuyerProperty[]> {
+    const supabase = await createClient();
+
+    const { data, error } = await supabase
+        .from("properties")
+        .select(`
+      id,
+      title,
+      slug,
+      property_type,
+      location,
+      location_slug,
+      city,
+      price,
+      area,
+      bedrooms,
+      bathrooms,
+      description,
+      possession,
+      rera_registration_number,
+
+      property_images (
+        id,
+        storage_path,
+        public_url,
+        display_order,
+        is_cover
+      ),
+
+      property_videos (
+        id,
+        storage_path,
+        public_url
+      ),
+
+      property_features (
+        feature
+      ),
+
+      property_amenities (
+        amenity,
+        icon
+      )
+    `)
+        .eq("status", "published")
+        .eq("featured", true)
+        .order("created_at", { ascending: false });
+
+    if (error) {
+        console.error("Failed to load featured properties:", error);
+        throw new Error("Unable to load featured properties.");
+    }
+
+    return (data ?? []).map((row) =>
+        mapProperty(row as PropertyRow)
+    );
+}
