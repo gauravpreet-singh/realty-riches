@@ -72,17 +72,14 @@ export default function PropertyFilters({
         shadow-[0_20px_60px_rgba(0,0,0,0.25)]
       "
     >
-      {/* HEADER */}
       <div className="border-b border-white/10 px-5 py-5">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div
               className="
                 flex h-9 w-9 items-center justify-center
-                rounded-xl
-                border border-[#d4af37]/20
-                bg-[#d4af37]/10
-                text-[#d4af37]
+                rounded-xl border border-[#d4af37]/20
+                bg-[#d4af37]/10 text-[#d4af37]
               "
             >
               <SlidersHorizontal size={17} />
@@ -92,7 +89,6 @@ export default function PropertyFilters({
               <h2 className="text-sm font-semibold text-white">
                 Find Your Property
               </h2>
-
               <p className="mt-0.5 text-[11px] text-zinc-500">
                 Refine your search
               </p>
@@ -102,13 +98,8 @@ export default function PropertyFilters({
           {activeFilters > 0 && (
             <span
               className="
-                flex h-6 min-w-6 items-center justify-center
-                rounded-full
-                bg-[#d4af37]
-                px-2
-                text-[10px]
-                font-bold
-                text-black
+                flex h-6 min-w-6 items-center justify-center rounded-full
+                bg-[#d4af37] px-2 text-[10px] font-bold text-black
               "
             >
               {activeFilters}
@@ -117,56 +108,39 @@ export default function PropertyFilters({
         </div>
       </div>
 
-      {/* FILTER BODY */}
       <div className="space-y-6 p-5">
-        {/* SEARCH */}
         <FilterGroup label="Search">
           <div className="relative">
             <Search
               size={16}
               className="
-                pointer-events-none
-                absolute left-3.5 top-1/2
-                -translate-y-1/2
-                text-zinc-500
+                pointer-events-none absolute left-3.5 top-1/2
+                -translate-y-1/2 text-zinc-500
               "
             />
-
             <input
               type="text"
               value={search}
               onChange={(event) => setSearch(event.target.value)}
               placeholder="Search properties..."
               className="
-                h-11 w-full rounded-xl
-                border border-white/10
-                bg-black/30
-                pl-10 pr-4
-                text-sm text-white
-                outline-none
-                placeholder:text-zinc-600
-                transition
-                focus:border-[#d4af37]/50
-                focus:bg-black/50
-                focus:ring-1
-                focus:ring-[#d4af37]/20
+                h-11 w-full rounded-xl border border-white/10
+                bg-black/30 pl-10 pr-4 text-sm text-white outline-none
+                placeholder:text-zinc-600 transition
+                focus:border-[#d4af37]/50 focus:bg-black/50
+                focus:ring-1 focus:ring-[#d4af37]/20
               "
             />
           </div>
         </FilterGroup>
 
-        {/* LOCATION */}
-        <FilterGroup
-          label="Location"
-          icon={<MapPin size={13} />}
-        >
+        <FilterGroup label="Location" icon={<MapPin size={13} />}>
           <select
             value={location}
             onChange={(event) => setLocation(event.target.value)}
             className={selectClassName}
           >
             <option value="">All locations</option>
-
             {locations.map((item) => (
               <option key={item.slug} value={item.slug}>
                 {item.name}
@@ -175,11 +149,7 @@ export default function PropertyFilters({
           </select>
         </FilterGroup>
 
-        {/* PROPERTY TYPE */}
-        <FilterGroup
-          label="Property Type"
-          icon={<Home size={13} />}
-        >
+        <FilterGroup label="Property Type" icon={<Home size={13} />}>
           <select
             value={propertyType}
             onChange={(event) => setPropertyType(event.target.value)}
@@ -192,11 +162,7 @@ export default function PropertyFilters({
           </select>
         </FilterGroup>
 
-        {/* BUDGET */}
-        <FilterGroup
-          label="Maximum Budget"
-          icon={<WalletCards size={13} />}
-        >
+        <FilterGroup label="Maximum Budget" icon={<WalletCards size={13} />}>
           <select
             value={maxPrice}
             onChange={(event) => setMaxPrice(event.target.value)}
@@ -211,11 +177,7 @@ export default function PropertyFilters({
           </select>
         </FilterGroup>
 
-        {/* BEDROOMS */}
-        <FilterGroup
-          label="Bedrooms"
-          icon={<BedDouble size={13} />}
-        >
+        <FilterGroup label="Bedrooms" icon={<BedDouble size={13} />}>
           <div className="grid grid-cols-3 gap-2">
             {[
               { value: "", label: "Any" },
@@ -231,8 +193,7 @@ export default function PropertyFilters({
                   type="button"
                   onClick={() => setBedrooms(item.value)}
                   className={`
-                    h-10 rounded-xl
-                    border text-xs font-medium
+                    h-10 rounded-xl border text-xs font-medium
                     transition-all duration-200
                     ${
                       active
@@ -248,7 +209,6 @@ export default function PropertyFilters({
           </div>
         </FilterGroup>
 
-        {/* SORT */}
         <FilterGroup label="Sort By">
           <select
             value={sort}
@@ -262,22 +222,15 @@ export default function PropertyFilters({
         </FilterGroup>
       </div>
 
-      {/* FOOTER */}
       <div className="border-t border-white/10 p-4">
         <button
           type="button"
           onClick={clearFilters}
           className="
-            flex h-11 w-full
-            items-center justify-center gap-2
-            rounded-xl
-            border border-white/10
-            bg-white/[0.025]
-            text-xs font-medium
-            text-zinc-400
-            transition-all
-            hover:border-[#d4af37]/30
-            hover:bg-[#d4af37]/5
+            flex h-11 w-full items-center justify-center gap-2
+            rounded-xl border border-white/10 bg-white/[0.025]
+            text-xs font-medium text-zinc-400 transition-all
+            hover:border-[#d4af37]/30 hover:bg-[#d4af37]/5
             hover:text-[#d4af37]
           "
         >
@@ -288,10 +241,6 @@ export default function PropertyFilters({
     </div>
   );
 }
-
-/* -------------------------------------------------- */
-/* Reusable filter group                              */
-/* -------------------------------------------------- */
 
 function FilterGroup({
   label,
@@ -305,38 +254,20 @@ function FilterGroup({
   return (
     <div>
       <div className="mb-2.5 flex items-center gap-1.5">
-        {icon && (
-          <span className="text-zinc-600">
-            {icon}
-          </span>
-        )}
-
+        {icon && <span className="text-zinc-600">{icon}</span>}
         <label className="text-[11px] font-medium uppercase tracking-[0.16em] text-zinc-500">
           {label}
         </label>
       </div>
-
       {children}
     </div>
   );
 }
 
-/* -------------------------------------------------- */
-/* Shared select styling                              */
-/* -------------------------------------------------- */
-
 const selectClassName = `
-  h-11 w-full
-  appearance-none
-  rounded-xl
-  border border-white/10
-  bg-[#111313]
-  px-3.5
-  text-sm text-zinc-300
-  outline-none
-  transition
-  focus:border-[#d4af37]/50
-  focus:bg-black
-  focus:ring-1
-  focus:ring-[#d4af37]/20
+  h-11 w-full appearance-none rounded-xl
+  border border-white/10 bg-[#111313]
+  px-3.5 text-sm text-zinc-300 outline-none transition
+  focus:border-[#d4af37]/50 focus:bg-black
+  focus:ring-1 focus:ring-[#d4af37]/20
 `;

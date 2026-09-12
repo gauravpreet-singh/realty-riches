@@ -2,6 +2,9 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { ChevronDown } from "lucide-react";
+
+import { locations } from "@/data/locations";
 
 export default function Hero() {
   const [location, setLocation] = useState("");
@@ -66,12 +69,32 @@ export default function Hero() {
                   Location
                 </label>
 
-                <input
-                  value={location}
-                  onChange={(e) => setLocation(e.target.value)}
-                  placeholder="Mohali, Kharar..."
-                  className="mt-1 w-full bg-transparent text-white outline-none placeholder:text-zinc-500"
-                />
+                <div className="relative mt-1">
+                  <select
+                    value={location}
+                    onChange={(e) => setLocation(e.target.value)}
+                    className="w-full appearance-none bg-transparent pr-8 text-lg text-white outline-none cursor-pointer"
+                  >
+                  <option value="" className="bg-black">
+                    All locations
+                  </option>
+
+                  {locations.map((item) => (
+                    <option
+                      key={item.slug}
+                      value={item.slug}
+                      className="bg-black"
+                    >
+                      {item.name}
+                    </option>
+                  ))}
+                  </select>
+
+                  <ChevronDown
+                    size={18}
+                    className="pointer-events-none absolute right-1 top-1/2 -translate-y-1/2 text-zinc-400"
+                  />
+                </div>
 
               </div>
 

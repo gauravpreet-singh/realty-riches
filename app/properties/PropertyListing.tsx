@@ -1,13 +1,12 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import PropertyCard from "@/components/PropertyCard";
 import PropertyFilters from "@/components/PropertyFilters";
 import type { BuyerProperty } from "@/lib/properties";
-import PropertiesHero from "@/components/PropertiesHero";
 import { RotateCcw } from "lucide-react";
 
 type Props = {
@@ -40,6 +39,15 @@ export default function PropertyListing({ properties }: Props) {
 
     const [search, setSearch] = useState("");
     const [sort, setSort] = useState("newest");
+
+    // Keep the property filters synchronized with URL parameters.
+    // This is important when arriving here from the homepage search.
+    useEffect(() => {
+        setLocation(searchParams.get("location") || "");
+        setPropertyType(searchParams.get("type") || "");
+        setBedrooms(searchParams.get("bedrooms") || "");
+        setMaxPrice(searchParams.get("maxPrice") || "");
+    }, [searchParams]);
 
     const filteredProperties = useMemo(() => {
         const query = search.trim().toLowerCase();
@@ -109,7 +117,6 @@ export default function PropertyListing({ properties }: Props) {
         <main className="min-h-screen bg-black text-white">
             {/* Header */}
             <Navbar />
-            <PropertiesHero image={properties[0]?.image} />
 
             {/* Main content */}
             <section className="bg-[#080909] px-6 py-20">
