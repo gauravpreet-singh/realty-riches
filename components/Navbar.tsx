@@ -6,30 +6,12 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const navItems = [
-  {
-    label: "Properties",
-    href: "/properties",
-  },
-  {
-    label: "Locations",
-    href: "/locations",
-  },
-  {
-    label: "Market Insights",
-    href: "/market-insights",
-  },
-  {
-    label: "Compare",
-    href: "/compare",
-  },
-  {
-    label: "Saved",
-    href: "/saved",
-  },
-  {
-    label: "RERA Verify",
-    href: "/rera-verification",
-  },
+  { label: "Properties", href: "/properties" },
+  { label: "Locations", href: "/locations" },
+  { label: "Market Insights", href: "/market-insights" },
+  { label: "Compare", href: "/compare" },
+  { label: "Saved", href: "/saved" },
+  { label: "RERA Verify", href: "/rera-verification" },
 ];
 
 export default function Navbar() {
@@ -78,17 +60,15 @@ export default function Navbar() {
             className="group flex shrink-0 items-center gap-3"
             aria-label="Realty Riches home"
           >
-            {/* Logo mark */}
-            <div className="flex h-12 w-12 items-center justify-center overflow-hidden">
-              <Image
-                src="/realty-riches-navbar-logo.png"
-                alt=""
-                width={150}
-                height={80}
-                priority
-                className="h-16 w-auto max-w-none object-contain"
-              />
-            </div>
+            {/* Supplied Realty Riches icon */}
+            <Image
+              src="/realty-riches-header-icon.png"
+              alt="Realty Riches"
+              width={512}
+              height={512}
+              priority
+              className="h-14 w-14 rounded-xl object-contain"
+            />
 
             {/* Brand text */}
             <div className="leading-none">
@@ -157,18 +137,14 @@ export default function Navbar() {
             <div className="space-y-1.5">
               <span
                 className={`block h-px w-5 bg-current transition ${
-                  mobileOpen
-                    ? "translate-y-[3.5px] rotate-45"
-                    : ""
+                  mobileOpen ? "translate-y-[3.5px] rotate-45" : ""
                 }`}
               />
-
               <span
                 className={`block h-px w-5 bg-current transition ${
                   mobileOpen ? "opacity-0" : ""
                 }`}
               />
-
               <span
                 className={`block h-px w-5 bg-current transition ${
                   mobileOpen
