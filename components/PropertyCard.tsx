@@ -28,6 +28,7 @@ export default function PropertyCard({ property }: PropertyCardProps) {
     property.rera?.verified;
 
   const formattedPrice = formatPrice(property.price);
+  const areaUnit = property.propertyType === "Plot" ? "sq. yd" : "sq ft";
 
   return (
     <article
@@ -231,7 +232,7 @@ export default function PropertyCard({ property }: PropertyCardProps) {
         >
           <PropertyDetail
             icon={<Ruler size={18} strokeWidth={1.5} />}
-            value={`${property.area.toLocaleString()} sq ft`}
+            value={`${property.area.toLocaleString()} ${areaUnit}`}
           />
 
           <PropertyDetail

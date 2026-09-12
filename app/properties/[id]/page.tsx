@@ -45,6 +45,8 @@ export default async function PropertyDetailPage({ params }: Props) {
     notFound();
   }
 
+  const areaUnit = property.propertyType === "Plot" ? "sq. yd" : "sq ft";
+
   const whatsappNumber = "919530900022";
 
   const message = encodeURIComponent(
@@ -99,7 +101,7 @@ export default async function PropertyDetailPage({ params }: Props) {
                 </span>
 
                 <span className="rounded-full border border-white/10 bg-white/[0.03] px-4 py-2 text-sm text-zinc-300">
-                  {property.area.toLocaleString()} sq ft
+                  {property.area.toLocaleString()} {areaUnit}
                 </span>
 
                 {property.bedrooms > 0 && (
