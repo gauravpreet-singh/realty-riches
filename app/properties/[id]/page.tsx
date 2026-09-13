@@ -27,6 +27,45 @@ import NearbyPlaces from "@/components/NearbyPlaces";
 import WhatsAppFloating from "@/components/WhatsAppFloating";
 
 import { getPublishedPropertyById } from "@/lib/properties";
+import type { Metadata } from "next";
+import { siteUrl } from "@/lib/seo";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}): Promise<Metadata> {
+  const { id } = await params;
+  const property = await getPublishedPropertyById(id);
+
+  if (!property) {
+    return {
+      title: "Property Not Found",
+      robots: { index: false, follow: false },
+    };
+  }
+
+  const location = property.location || property.city || "Mohali";
+  const type = property.propertyType.toLowerCase();
+  const title = `${property.title} in ${location}`;
+  const description =
+    property.description?.slice(0, 155) ||
+    `Explore this ${type} in ${location} with Realty Riches. View price, area, amenities, location details and schedule a visit.`;
+  const canonicalPath = `/properties/${property.slug}`;
+
+  return {
+    title,
+    description,
+    alternates: { canonical: canonicalPath },
+    openGraph: {
+      type: "website",
+      title,
+      description,
+      url: `${siteUrl}${canonicalPath}`,
+      images: property.image ? [{ url: property.image }] : undefined,
+    },
+  };
+}
 
 type Props = {
   params: Promise<{

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-
+import type { Metadata } from "next";
+import { siteUrl } from "@/lib/seo";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import PropertyCard from "@/components/PropertyCard";
@@ -14,6 +15,55 @@ type LocationPageProps = {
     slug: string;
   }>;
 };
+
+const locationSeo: Record<string, { name: string; description: string }> = {
+  mohali: {
+    name: "Mohali",
+    description:
+      "Explore property in Mohali, sector-wise buying considerations, local insights and selected homes with Realty Riches.",
+  },
+  chandigarh: {
+    name: "Chandigarh",
+    description:
+      "Explore residential property opportunities in Chandigarh with buyer-focused location guidance from Realty Riches.",
+  },
+  kharar: {
+    name: "Kharar",
+    description:
+      "Explore flats, villas and plots in Kharar with buyer-focused location insights, property listings and EMI guidance.",
+  },
+  "new-chandigarh": {
+    name: "New Chandigarh",
+    description:
+      "Explore property in New Chandigarh with location insights, selected listings and buyer-focused real-estate guidance.",
+  },
+};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const seo = locationSeo[slug];
+
+  if (!seo) {
+    return { title: "Location Not Found", robots: { index: false } };
+  }
+
+  const title = `Property in ${seo.name}`;
+  return {
+    title,
+    description: seo.description,
+    alternates: { canonical: `/locations/${slug}` },
+    openGraph: {
+      title,
+      description: seo.description,
+      url: `${siteUrl}/locations/${slug}`,
+      type: "website",
+    },
+  };
+}
+
 
 export function generateStaticParams() {
   return locations.map((location) => ({
