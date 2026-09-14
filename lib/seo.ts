@@ -1,9 +1,9 @@
 export const siteName = "Realty Riches";
 export const siteTitle =
-  "Realty Riches | Property in Mohali, Chandigarh, Kharar & New Chandigarh";
-export const siteDescription =
-  "Explore carefully selected apartments, villas and plots across Mohali, Chandigarh, Kharar and New Chandigarh. Compare properties, understand locations, calculate EMI and make richer real-estate decisions.";
+  "Property in Mohali, Kharar & New Chandigarh | Realty Riches";
 
+export const siteDescription =
+  "Find apartments, villas and plots for sale in Mohali, Kharar and New Chandigarh. Explore verified property listings, compare homes, check locations and make informed real-estate decisions with Realty Riches.";
 export const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL ||
   (process.env.VERCEL_PROJECT_PRODUCTION_URL
