@@ -1,3 +1,5 @@
+import Breadcrumbs from "@/components/Breadcrumbs";
+import PropertyJsonLd from "@/components/PropertyJsonLd";
 import Link from "next/link";
 import {
   ArrowUpDown,
@@ -67,9 +69,9 @@ export async function generateMetadata({
     title,
     description,
     robots: {
-    index: true,
-    follow: true,
-  },
+      index: true,
+      follow: true,
+    },
     alternates: { canonical: canonicalPath },
     openGraph: {
       type: "website",
@@ -111,15 +113,26 @@ export default async function PropertyDetailPage({ params }: Props) {
   return (
     <main className="min-h-screen bg-black pb-24 text-white">
       <Navbar />
+      <PropertyJsonLd property={property} />
       <div className="mx-auto max-w-7xl px-6 pt-28">
 
         {/* Back */}
-        <Link
-          href="/properties"
-          className="mb-8 inline-flex items-center gap-2 text-sm text-zinc-500 transition hover:text-[#d4af37]"
-        >
-          ← Back to properties
-        </Link>
+        <Breadcrumbs
+          items={[
+            {
+              name: "Home",
+              href: "/",
+            },
+            {
+              name: "Properties",
+              href: "/properties",
+            },
+            {
+              name: property.title,
+              href: `/properties/${property.slug}`,
+            },
+          ]}
+        />
 
         {/* Gallery */}
         <PropertyGallery
