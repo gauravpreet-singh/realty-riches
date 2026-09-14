@@ -16,26 +16,40 @@ type LocationPageProps = {
   }>;
 };
 
-const locationSeo: Record<string, { name: string; description: string }> = {
+const locationSeo: Record<
+  string,
+  {
+    name: string;
+    title: string;
+    description: string;
+  }
+> = {
   mohali: {
     name: "Mohali",
+    title: "Property in Mohali | Apartments, Villas & Plots",
     description:
-      "Explore property in Mohali, sector-wise buying considerations, local insights and selected homes with Realty Riches.",
+      "Explore property in Mohali, including apartments, villas and plots. Browse selected listings, understand local neighbourhoods and compare your options with Realty Riches.",
   },
-  chandigarh: {
-    name: "Chandigarh",
-    description:
-      "Explore residential property opportunities in Chandigarh with buyer-focused location guidance from Realty Riches.",
-  },
+
   kharar: {
     name: "Kharar",
+    title: "Property in Kharar | Flats, Villas & Plots",
     description:
-      "Explore flats, villas and plots in Kharar with buyer-focused location insights, property listings and EMI guidance.",
+      "Explore property in Kharar, including flats, villas and plots. Discover local neighbourhoods, browse available properties and make informed buying decisions with Realty Riches.",
   },
+
+  chandigarh: {
+    name: "Chandigarh",
+    title: "Property in Chandigarh | Homes & Apartments",
+    description:
+      "Explore residential property in Chandigarh. Browse selected homes and apartments, understand neighbourhoods and compare your options with Realty Riches.",
+  },
+
   "new-chandigarh": {
     name: "New Chandigarh",
+    title: "Property in New Chandigarh | Homes & Apartments",
     description:
-      "Explore property in New Chandigarh with location insights, selected listings and buyer-focused real-estate guidance.",
+      "Explore property in New Chandigarh, including homes and apartments. Discover local neighbourhoods, selected listings and buyer-focused real-estate insights with Realty Riches.",
   },
 };
 export async function generateMetadata({
@@ -50,13 +64,13 @@ export async function generateMetadata({
     return { title: "Location Not Found", robots: { index: false } };
   }
 
-  const title = `Property in ${seo.name}`;
+  const title = seo.title;
   return {
-    title,
+    title: seo.title,
     description: seo.description,
     alternates: { canonical: `/locations/${slug}` },
     openGraph: {
-      title,
+      title: seo.title,
       description: seo.description,
       url: `${siteUrl}/locations/${slug}`,
       type: "website",
