@@ -43,15 +43,17 @@ export default function Hero() {
 
           {/* Heading */}
           <h1 className="text-5xl font-semibold leading-tight tracking-tight md:text-7xl">
-            Find a place
+            Find your
             <br />
-            <span className="gold-text">you'll love.</span>
+            <span className="gold-text">perfect property.</span>
           </h1>
 
           {/* Description */}
           <p className="mt-7 max-w-2xl text-lg leading-8 text-zinc-300">
-            Discover homes, apartments, plots and investment opportunities
-            across Mohali, Chandigarh and surrounding areas.
+            Discover apartments, villas, plots and investment opportunities
+            across Mohali, Kharar, New Chandigarh and Chandigarh. Compare
+            properties, explore local markets and find a home that fits your
+            budget and lifestyle.
           </p>
 
           {/* ===================================================== */}
@@ -75,19 +77,19 @@ export default function Hero() {
                     onChange={(e) => setLocation(e.target.value)}
                     className="w-full appearance-none bg-transparent pr-8 text-lg text-white outline-none cursor-pointer"
                   >
-                  <option value="" className="bg-black">
-                    All locations
-                  </option>
-
-                  {locations.map((item) => (
-                    <option
-                      key={item.slug}
-                      value={item.slug}
-                      className="bg-black"
-                    >
-                      {item.name}
+                    <option value="" className="bg-black">
+                      All locations
                     </option>
-                  ))}
+
+                    {locations.map((item) => (
+                      <option
+                        key={item.slug}
+                        value={item.slug}
+                        className="bg-black"
+                      >
+                        {item.name}
+                      </option>
+                    ))}
                   </select>
 
                   <ChevronDown
