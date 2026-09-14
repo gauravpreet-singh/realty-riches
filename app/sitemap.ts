@@ -22,7 +22,6 @@ const staticRoutes = [
 ];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const now = new Date();
   let properties: Awaited<ReturnType<typeof getPublishedProperties>> = [];
 
   try {
@@ -33,16 +32,20 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const staticEntries: MetadataRoute.Sitemap = staticRoutes.map((route) => ({
     url: `${siteUrl}${route}`,
-    lastModified: now,
-    changeFrequency: route === "/" || route === "/properties" ? "daily" : "weekly",
-    priority: route === "/" ? 1 : route === "/properties" ? 0.95 : 0.75,
+    changeFrequency:
+      route === "/" || route === "/properties" ? "daily" : "weekly",
+    priority:
+      route === "/"
+        ? 1
+        : route === "/properties"
+          ? 0.95
+          : 0.75,
   }));
 
   const propertyEntries: MetadataRoute.Sitemap = properties
     .filter((property) => property.slug)
     .map((property) => ({
       url: `${siteUrl}/properties/${property.slug}`,
-      lastModified: now,
       changeFrequency: "weekly" as const,
       priority: 0.9,
     }));
