@@ -32,14 +32,15 @@ export const marketInsights: MarketInsight[] = [
     featured: true,
 
     introduction:
-      "Buying a property is rarely just about finding a home that looks good. A strong buying decision requires you to evaluate the property, the surrounding location, the financial commitment and how well the property fits your needs.",
+      "Buying a property is rarely just about finding a home that looks good. A strong decision comes from evaluating the property, its surroundings, the complete financial commitment and the risks you are comfortable taking. This guide gives buyers a practical framework for moving from an attractive listing to a well-considered decision.",
 
     sections: [
       {
         heading: "Start with the location",
         paragraphs: [
-          "A property should be evaluated in the context of its surroundings. Consider your regular commute, access to major roads, schools, healthcare, shopping and other destinations that matter to your household.",
-          "Two properties with similar specifications can provide very different experiences because of their locations. Look beyond the project itself and understand what everyday life around the property will look like.",
+          "Begin with the places that shape your everyday life: work, schools, healthcare, family, shopping and the roads you use regularly. A property can have excellent specifications and still be inconvenient if routine travel is consistently difficult.",
+          "Visit the neighbourhood rather than judging it only from a brochure or map. Look at the approach roads, surrounding construction, access to essentials and how the area feels at the times you are most likely to use it.",
+
         ],
         bullets: [
           "Daily commute and connectivity",
@@ -52,8 +53,9 @@ export const marketInsights: MarketInsight[] = [
       {
         heading: "Understand what you are actually buying",
         paragraphs: [
-          "Look beyond the headline configuration. Understand the usable space, layout, orientation, floor, parking arrangements, amenities and other features that affect how the property will work for you.",
-          "If the property is part of a larger project, evaluate the project as a whole rather than focusing only on the individual unit.",
+          "The headline configuration tells only part of the story. Look closely at usable space, room proportions, natural light, ventilation, orientation, floor, parking and the features actually included in the offering.",
+          "For a larger project, evaluate the project as well as the individual unit. Common areas, maintenance arrangements, amenities, access and the overall development can affect your experience long after the booking.",
+
         ],
         bullets: [
           "Configuration and usable space",
@@ -67,24 +69,27 @@ export const marketInsights: MarketInsight[] = [
       {
         heading: "Evaluate the financial commitment",
         paragraphs: [
-          "The purchase price is only one part of the financial decision. Buyers should understand the down payment, expected loan amount, EMI and other costs associated with purchasing and maintaining the property.",
-          "Avoid choosing a property solely because a lender may approve the loan. Your comfortable monthly budget should also account for savings, existing commitments and future financial needs.",
+          "The purchase price is only one part of the financial decision. Consider the down payment, expected loan, EMI and other applicable costs associated with purchasing and maintaining the property.",
+          "A lender’s maximum eligibility is not the same as a comfortable budget. Leave room for savings, existing commitments, emergencies and future financial goals.",
+
         ],
       },
 
       {
         heading: "Compare before deciding",
         paragraphs: [
-          "Shortlisting several properties can make a decision much easier. Compare properties using consistent criteria instead of judging each one independently.",
-          "Price, area, configuration, location, possession and practical suitability should all be considered together.",
+          "Create a shortlist and compare properties using the same criteria. Record price, area, configuration, location, possession, parking, amenities and any concerns so that an attractive feature does not overshadow an important drawback.",
+          "Comparison makes trade-offs visible. It helps you understand what you are paying extra for and which compromises you are genuinely comfortable making.",
+
         ],
       },
 
       {
         heading: "Verify before committing",
         paragraphs: [
-          "Before making a booking or purchase decision, review the relevant property and project documentation and seek appropriate professional advice where necessary.",
-          "The exact checks required will depend on the property type, project and transaction, so buyers should not rely solely on a general checklist.",
+          "Before paying a booking amount or signing an agreement, review the relevant property and project documentation. Important claims should be supported by appropriate documents or official sources.",
+          "The exact checks depend on the property and transaction. Where legal, financial or regulatory questions are significant, independent professional advice can help you make the decision with greater confidence.",
+
         ],
       },
     ],
@@ -112,7 +117,7 @@ export const marketInsights: MarketInsight[] = [
       "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=85",
 
     introduction:
-      "New Chandigarh is an evolving residential destination within the wider Chandigarh–Mohali region. Buyers considering the area should evaluate not only individual projects but also connectivity, surrounding development and their own long-term requirements.",
+      "New Chandigarh is an evolving residential destination in the wider Chandigarh–Mohali region. For buyers, the important question is not simply whether the area sounds promising, but whether a specific property fits their commute, lifestyle, budget and long-term plans. The best approach is to combine the broader development context with what you can actually experience around the project.",
 
     sections: [
       {
@@ -167,7 +172,7 @@ export const marketInsights: MarketInsight[] = [
       "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1600&q=85",
 
     introduction:
-      "A lender's maximum loan eligibility and your comfortable home-buying budget are not necessarily the same thing. A responsible budget should account for your income, existing commitments, savings and the long-term financial impact of the purchase.",
+      "The most expensive home a lender is willing to finance is not automatically the home you should buy. A comfortable budget leaves room for savings, existing commitments, emergencies and future goals. The aim is to understand the complete financial commitment before allowing a property price to determine your finances.",
 
     sections: [
       {
@@ -223,7 +228,7 @@ export const marketInsights: MarketInsight[] = [
       "https://images.unsplash.com/photo-1554469384-e58fac16e23a?auto=format&fit=crop&w=1600&q=85",
 
     introduction:
-      "A property booking is a significant commitment. Asking the right questions before making that commitment can help you understand exactly what you are buying and identify areas that require further verification.",
+      "A booking is the point where a property search starts becoming a financial commitment. Before you pay, ask questions that remove uncertainty about the property, project, costs, possession and documentation. If an important answer is unclear, treat that as a reason to investigate further rather than a reason to rush.",
 
     sections: [
       {
@@ -284,7 +289,7 @@ export const marketInsights: MarketInsight[] = [
       "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1600&q=85",
 
     introduction:
-      "Apartments and villas can both be excellent choices, but they solve different lifestyle and space requirements. The right choice depends on how you intend to use the property and what trade-offs matter most to you.",
+      "Apartment and villa are not simply two price categories; they represent different ways of living. An apartment can offer efficient space, shared amenities and a managed community, while a villa can offer greater private space, independence and control. The right choice depends on the lifestyle you want and the trade-offs you are willing to make.",
 
     sections: [
       {
@@ -332,7 +337,7 @@ export const marketInsights: MarketInsight[] = [
       "https://images.unsplash.com/photo-1449844908441-8829872d2607?auto=format&fit=crop&w=1600&q=85",
 
     introduction:
-      "A property does not exist in isolation. The roads you use, places you visit and services around your home can have a major effect on your everyday experience.",
+      "A home is more than its walls. The roads you use, services around you, neighbourhood environment and time required to reach important destinations all become part of the ownership experience. That is why location should be evaluated as carefully as the property itself.",
 
     sections: [
       {
@@ -380,7 +385,7 @@ export const marketInsights: MarketInsight[] = [
       "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=1600&q=85",
 
     introduction:
-      "Due diligence is one of the most important parts of a property purchase. The exact checks depend on the property and transaction, but buyers should understand the importance of reviewing documentation and verifying key claims.",
+      "Due diligence is the process of replacing assumptions with evidence before you commit to a property. It is not about making every buyer a legal expert; it is about knowing which questions need answers and when independent verification is appropriate.",
 
     sections: [
       {
@@ -435,7 +440,7 @@ export const marketInsights: MarketInsight[] = [
       "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1600&q=85",
 
     introduction:
-      "Buying your first home can feel overwhelming because there are many decisions to make at once. A structured process can make the journey easier to understand and help you avoid rushing into a decision.",
+      "Buying your first home is exciting, but the number of decisions can quickly become overwhelming. The simplest way to stay in control is to follow a sequence: define what you need, understand what you can afford, shortlist intelligently, visit and compare, then verify everything that matters before committing.",
 
     sections: [
       {
