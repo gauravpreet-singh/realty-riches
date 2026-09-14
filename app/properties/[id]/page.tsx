@@ -47,15 +47,29 @@ export async function generateMetadata({
 
   const location = property.location || property.city || "Mohali";
   const type = property.propertyType.toLowerCase();
-  const title = `${property.title} in ${location}`;
-  const description =
-    property.description?.slice(0, 155) ||
-    `Explore this ${type} in ${location} with Realty Riches. View price, area, amenities, location details and schedule a visit.`;
+
+  const bhk =
+    property.bedrooms > 0 ? `${property.bedrooms} BHK ` : "";
+
+  const title = `${bhk}${property.title} | ${location} | Realty Riches`;
+  const description = [
+    property.bedrooms > 0 ? `${property.bedrooms} BHK` : null,
+    type,
+    `for sale in ${location}`,
+    property.area ? `with ${property.area.toLocaleString()} sq ft area` : null,
+    "View price, amenities, location details and schedule a visit with Realty Riches.",
+  ]
+    .filter(Boolean)
+    .join(" ");
   const canonicalPath = `/properties/${property.slug}`;
 
   return {
     title,
     description,
+    robots: {
+    index: true,
+    follow: true,
+  },
     alternates: { canonical: canonicalPath },
     openGraph: {
       type: "website",
@@ -95,8 +109,8 @@ export default async function PropertyDetailPage({ params }: Props) {
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${message}`;
 
   return (
-    <main className="min-h-screen bg-black pb-24 text-white">  
-    <Navbar />
+    <main className="min-h-screen bg-black pb-24 text-white">
+      <Navbar />
       <div className="mx-auto max-w-7xl px-6 pt-28">
 
         {/* Back */}
@@ -211,9 +225,9 @@ export default async function PropertyDetailPage({ params }: Props) {
                   {(property.amenityDetails?.length
                     ? property.amenityDetails
                     : property.amenities.map((name) => ({
-                        name,
-                        icon: "sparkles",
-                      })))
+                      name,
+                      icon: "sparkles",
+                    })))
                     .map((amenity) => {
                       const Icon = getAmenityIcon(amenity.icon);
 
@@ -359,13 +373,13 @@ export default async function PropertyDetailPage({ params }: Props) {
           </aside>
         </div>
       </div>
-{/* LOCATION / MAP */}
-    <LocationSection
-      location={property.location}
-      city={property.city}
-    />
+      {/* LOCATION / MAP */}
+      <LocationSection
+        location={property.location}
+        city={property.city}
+      />
 
-    <Footer />
+      <Footer />
       {/* Floating WhatsApp */}
       <WhatsAppFloating
         phoneNumber={whatsappNumber}
