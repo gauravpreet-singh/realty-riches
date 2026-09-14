@@ -157,9 +157,18 @@ export default async function PropertyDetailPage({ params }: Props) {
                 {property.title}
               </h1>
 
-              <p className="mt-4 text-lg text-zinc-400">
-                {property.location}
-              </p>
+              {property.locationSlug ? (
+                <Link
+                  href={`/locations/${property.locationSlug}`}
+                  className="mt-4 block text-lg text-zinc-400 transition hover:text-[#c9a45c]"
+                >
+                  {property.location}
+                </Link>
+              ) : (
+                <p className="mt-4 text-lg text-zinc-400">
+                  {property.location}
+                </p>
+              )}
 
               <div className="mt-6 flex flex-wrap gap-3">
                 <span className="rounded-full border border-white/10 bg-white/[0.03] px-4 py-2 text-sm text-zinc-300">

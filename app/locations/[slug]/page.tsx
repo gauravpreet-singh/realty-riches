@@ -9,6 +9,7 @@ import PropertyCard from "@/components/PropertyCard";
 import { locations } from "@/data/locations";
 import { getPublishedProperties } from "@/lib/properties";
 import LocationMarketData from "@/components/LocationMarketData";
+import LocationJsonLd from "@/components/LocationJsonLd";
 
 type LocationPageProps = {
   params: Promise<{
@@ -50,6 +51,34 @@ const locationSeo: Record<
     title: "Property in New Chandigarh | Homes & Apartments",
     description:
       "Explore property in New Chandigarh, including homes and apartments. Discover local neighbourhoods, selected listings and buyer-focused real-estate insights with Realty Riches.",
+  },
+
+  zirakpur: {
+    name: "Zirakpur",
+    title: "Property in Zirakpur | Apartments, Plots & Commercial",
+    description:
+      "Explore property in Zirakpur, including apartments, plots and commercial properties. Browse selected listings and understand the local market with Realty Riches.",
+  },
+
+  "airport-road": {
+    name: "Airport Road",
+    title: "Property on Airport Road, Mohali | Apartments & Plots",
+    description:
+      "Explore property on Airport Road in Mohali, including apartments, plots and commercial opportunities. Browse selected listings and understand the area before you buy.",
+  },
+
+  aerocity: {
+    name: "Aerocity",
+    title: "Property in Aerocity, Mohali | Apartments & Plots",
+    description:
+      "Explore property in Aerocity, Mohali, including apartments, plots and commercial properties. Discover selected listings and location insights with Realty Riches.",
+  },
+
+  "sector-115": {
+    name: "Sector 115",
+    title: "Property in Sector 115, Mohali | Apartments & Plots",
+    description:
+      "Explore property in Sector 115, Mohali, including apartments, plots and houses. Browse available listings and understand the area before making a property decision.",
   },
 };
 export async function generateMetadata({
@@ -107,7 +136,11 @@ export default async function LocationPage({
   return (
     <main className="min-h-screen bg-black text-white">
       <Navbar />
-
+      <LocationJsonLd
+        name={location.name}
+        description={location.longDescription}
+        slug={location.slug}
+      />
       {/* Hero */}
       <section className="relative min-h-[620px] overflow-hidden pt-20">
         <img
@@ -306,7 +339,7 @@ export default async function LocationPage({
           </div>
         </div>
       </section>
-<LocationMarketData locationSlug={location.slug} />
+      <LocationMarketData locationSlug={location.slug} />
       {/* Properties */}
       <section className="section-padding">
         <div className="container-custom">
@@ -362,7 +395,56 @@ export default async function LocationPage({
           )}
         </div>
       </section>
+      <section className="mx-auto max-w-7xl px-6 py-16">
+        <div className="mb-8">
+          <h2 className="text-3xl font-semibold">
+            Explore {location.name}
+          </h2>
 
+          <p className="mt-3 max-w-2xl text-muted-foreground">
+            Explore properties, compare options and learn more about the
+            {` ${location.name}`} real-estate market.
+          </p>
+        </div>
+
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <Link
+            href={`/properties?location=${location.slug}`}
+            className="rounded-xl border p-5 transition hover:shadow-md"
+          >
+            <h3 className="font-semibold">
+              Properties in {location.name}
+            </h3>
+            <p className="mt-2 text-sm text-muted-foreground">
+              Browse available properties in {location.name}.
+            </p>
+          </Link>
+
+          <Link
+            href="/properties"
+            className="rounded-xl border p-5 transition hover:shadow-md"
+          >
+            <h3 className="font-semibold">
+              All Properties
+            </h3>
+            <p className="mt-2 text-sm text-muted-foreground">
+              Explore all available properties across the region.
+            </p>
+          </Link>
+
+          <Link
+            href="/market-insights"
+            className="rounded-xl border p-5 transition hover:shadow-md"
+          >
+            <h3 className="font-semibold">
+              Market Insights
+            </h3>
+            <p className="mt-2 text-sm text-muted-foreground">
+              Explore property prices, market trends and buying insights.
+            </p>
+          </Link>
+        </div>
+      </section>
       {/* CTA */}
       <section className="border-t border-white/10 py-24">
         <div className="container-custom">
