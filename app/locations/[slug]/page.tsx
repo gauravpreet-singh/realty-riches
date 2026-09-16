@@ -10,6 +10,8 @@ import { locations } from "@/data/locations";
 import { getPublishedProperties } from "@/lib/properties";
 import LocationMarketData from "@/components/LocationMarketData";
 import LocationJsonLd from "@/components/LocationJsonLd";
+import { marketInsights } from "@/data/marketInsights";
+import Breadcrumbs from "@/components/Breadcrumbs";
 
 type LocationPageProps = {
   params: Promise<{
@@ -126,7 +128,22 @@ export default async function LocationPage({
   if (!location) {
     notFound();
   }
-
+  const locationInsights =
+    location.slug === "new-chandigarh"
+      ? marketInsights.filter((insight) =>
+        [
+          "new-chandigarh-location-guide",
+          "understanding-property-location",
+          "how-to-evaluate-a-property",
+        ].includes(insight.slug)
+      )
+      : marketInsights.filter((insight) =>
+        [
+          "understanding-property-location",
+          "how-to-evaluate-a-property",
+          "property-due-diligence",
+        ].includes(insight.slug)
+      );
   const properties = await getPublishedProperties();
 
   const locationProperties = properties.filter(
@@ -141,6 +158,24 @@ export default async function LocationPage({
         description={location.longDescription}
         slug={location.slug}
       />
+      <div className="container-custom pt-28">
+        <Breadcrumbs
+          items={[
+            {
+              name: "Home",
+              href: "/",
+            },
+            {
+              name: "Locations",
+              href: "/locations",
+            },
+            {
+              name: location.name,
+              href: `/locations/${location.slug}`,
+            },
+          ]}
+        />
+      </div>
       {/* Hero */}
       <section className="relative min-h-[620px] overflow-hidden pt-20">
         <img
@@ -443,6 +478,50 @@ export default async function LocationPage({
               Explore property prices, market trends and buying insights.
             </p>
           </Link>
+        </div>
+      </section>
+      <section className="border-t border-white/10 py-20">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="mb-10">
+            <p className="text-xs uppercase tracking-[0.22em] text-[#d4af37]">
+              Buyer Resources
+            </p>
+
+            <h2 className="mt-3 text-3xl font-semibold md:text-4xl">
+              Property guides for {location.name}
+            </h2>
+
+            <p className="mt-4 max-w-2xl text-zinc-400">
+              Learn how to evaluate properties, understand locations and
+              make a more informed property decision.
+            </p>
+          </div>
+
+          <div className="grid gap-6 md:grid-cols-3">
+            {locationInsights.map((insight) => (
+              <Link
+                key={insight.slug}
+                href={`/market-insights/${insight.slug}`}
+                className="group rounded-2xl border border-white/10 bg-white/[0.02] p-6 transition hover:border-[#d4af37]/30 hover:bg-white/[0.04]"
+              >
+                <p className="text-xs uppercase tracking-[0.18em] text-[#d4af37]">
+                  {insight.category}
+                </p>
+
+                <h3 className="mt-3 text-xl font-semibold transition group-hover:text-[#d4af37]">
+                  {insight.title}
+                </h3>
+
+                <p className="mt-3 text-sm leading-6 text-zinc-500">
+                  {insight.excerpt}
+                </p>
+
+                <span className="mt-5 inline-block text-sm font-medium text-white">
+                  Read guide →
+                </span>
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
       {/* CTA */}
